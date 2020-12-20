@@ -8,18 +8,15 @@
 //dependencies
 const http = require('http');
 const { handleReqRes } = require('./helper/handlerRequest');
+const environments = require('./helper/envirnments')
 
 //app object = module scaffolding
 const app = {};
 
-app.config = {
-    PORT : 8000
-};
-
 app.createServer = () => {
     const server = http.createServer(app.handleReqRes);
-    server.listen(app.config.PORT, () => {
-        console.log(`Server Running at this ${app.config.PORT} port`);
+    server.listen(environments.PORT, () => {
+        console.log(`Server Running at this ${environments.PORT} port in ${environments.ENV_NAME}`);
     });
 
 }
