@@ -9,7 +9,7 @@
 const environments = {}
 
 environments.development = {
-    PORT: 5000,
+    PORT: 4000,
     ENV_NAME: 'development',
     secretKey : 'developmentSecret'
 }

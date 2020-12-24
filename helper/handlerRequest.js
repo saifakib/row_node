@@ -53,14 +53,17 @@ handler.handleReqRes = (req, res) => {
             payload = typeof(payload) === 'object' ? payload : {};
     
             const payloadString = JSON.stringify(payload);
-    
+
             //return the final response
-            res.setHeader('Content-Type', 'application/json');
+            res.setHeader('Content-Type','application/json');
             res.writeHead(statusCode);
             res.end(payloadString);
         });
         //res.end('Hello')
     })
+
+    // console.log(parseUrl); 
+    // console.log(path);
     
 }
 module.exports = handler;
