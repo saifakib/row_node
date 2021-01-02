@@ -73,7 +73,7 @@ handler._token.post = (requestProperties, callback) => {
 handler._token.get = (requestProperties, callback) => {
     //check token id that its valid
     const id = typeof (requestProperties.queryStringObject.id) === 'string' &&
-        requestProperties.queryStringObject.id.trim().length === 30 ?
+        requestProperties.queryStringObject.id.trim().length === 29 ?
         requestProperties.queryStringObject.id : false;
 
     if (id) {

@@ -11,13 +11,15 @@ const environments = {}
 environments.development = {
     PORT: 4000,
     ENV_NAME: 'development',
-    secretKey : 'developmentSecret'
+    secretKey : 'developmentSecret',
+    maxCheck : 5
 }
 
 environments.production = {
     PORT: 8000,
     ENV_NAME: 'production',
-    secretKey : 'productionSecret'
+    secretKey : 'productionSecret',
+    maxCheck : 5
 }
 
 let currentEnvironment = typeof(process.env.NODE_ENV) === 'string' ? process.env.NODE_ENV : 'development'
