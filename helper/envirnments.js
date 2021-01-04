@@ -13,10 +13,10 @@ environments.development = {
     ENV_NAME: 'development',
     secretKey : 'developmentSecret',
     maxCheck : 5,
-    twilio: {
-        fromPhone: '+15017122661',
-        accountSid: 'AC52e232a6c4715ce630cda1d6931dbd4b',
-        authToken: '201015c2b74f4f70de863facac8c7ae3',
+    twilio: {                           //save info in twilio.txt file
+        fromPhone: '',
+        accountSid: '',
+        authToken: '',
     }
 }
 
@@ -26,9 +26,9 @@ environments.production = {
     secretKey : 'productionSecret',
     maxCheck : 5,
     twilio: {
-        fromPhone: '+15017122661',
-        accountSid: 'AC52e232a6c4715ce630cda1d6931dbd4b',
-        authToken: '201015c2b74f4f70de863facac8c7ae3',
+        fromPhone: '',
+        accountSid: '',
+        authToken: '',
     }
 }
 
