@@ -1,55 +1,25 @@
 /*
-* Title: Uptime Monitoring Application
-* Description: A RESTful API to monitor up and down time of user defined link
+* Title: Uptime Monitoring Application | Project Initial Files
+* Description: A RESTful API to monitor up and down time of user defined link | Initial File to start server and workers
 * Author: Saif Akib
-* Date: 2020-12-12
+* Date: 2021-01-04
 */
 
 //dependencies
-const http = require('http');
-const { handleReqRes } = require('./helper/handlerRequest');
-const environments = require('./helper/envirnments')
-//const data = require('./lib/data')
-const { sendTwilioSMS } = require('./helper/notification')
+const server = require('./lib/server')
+const worker = require('./lib/worker')
 
 //app object = module scaffolding
 const app = {};
 
-//testing file system
-//write data
-// data.create('test','firstfile', {'country':'Bangkok','lan':'english'}, (err)=>{
-//     console.log(`error is `, err)
-// })
-//read data
-// data.read('test','firstfile', (err, data) => {
-//     console.log(err, data)
-// })
-//Update data
-// data.update('test','firstfile', {'country':'India','lan':'Hindi'}, (err)=>{
-//     console.log(`error is `, err)
-// })
-//deleting file
-// data.delete('test','firstfile', (err) => {
-//     console.log(err)
-// })
+app.init = () => {
+    //start server
+    server.init();
 
-sendTwilioSMS('01911111111', 'Hello world', (err) => {
-    console.log(`this is the error`, err);
-});
-// sendTwilioSMS('01842317359', 'Hello', (err)=>{
-//     console.log(`Error response`, err)
-// })
-
-app.createServer = () => {
-    const server = http.createServer(app.handleReqRes);
-    server.listen(environments.PORT, () => {
-        console.log(`Server Running at this ${environments.PORT} port in ${environments.ENV_NAME}`);
-    });
-
+    //start worker
+    worker.init();
 }
 
+app.init();
 
-app.handleReqRes = handleReqRes;
-
-//start the server
-app.createServer();
+module.exports = app;
