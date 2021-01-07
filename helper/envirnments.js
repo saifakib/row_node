@@ -17,6 +17,10 @@ environments.development = {
         fromPhone: '',
         accountSid: '',
         authToken: '',
+    },
+    mailInfo: {
+        mail : '',
+        password : '',
     }
 }
 
@@ -29,6 +33,10 @@ environments.production = {
         fromPhone: '',
         accountSid: '',
         authToken: '',
+    },
+    mailInfo: {
+        mail : '',
+        password : '',
     }
 }
 
