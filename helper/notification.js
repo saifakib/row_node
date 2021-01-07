@@ -9,8 +9,11 @@
 
 // dependencies
 const https = require('https');
-const { twilio } = require('./envirnments')
 const queryString = require('querystring');
+const nodemailer = require('nodemailer');
+const { twilio, mailInfo } = require('./envirnments')
+const { mailVerify } = require('./utilities')
+
 
 //module scaffolding 
 const notifications = {}
@@ -50,7 +53,7 @@ notifications.sendTwilioSMS = (phone, msg, callback) => {
             const status = res.statusCode;
             if (status === 200 || status === 201) {
                 callback(false)
-            } else{
+            } else {
                 callback(`Status code returned was ${status}`)
             }
         })
@@ -64,6 +67,41 @@ notifications.sendTwilioSMS = (phone, msg, callback) => {
     } else {
         callback('Given parameters were missing or invalid')
     }
+}
+
+//sending mail to user using Node mailer
+notifications.sendNodemailer = (mail, msg, callback) => {
+
+    //input validation
+    const userMail = typeof mail === 'string' && mailVerify(mail) === true ? maile : false
+    const msgBody = typeof msg === 'string' && msg.trim().length > 0 && msg.trim().length <= 1600 ? msg.trim() : false
+
+    //create reusable transporter object
+    let transporter = nodemailer.createTransport({
+        host: "smtp.ethereal.email",
+        port: 587,
+        secure: false, // true for 465, false for other ports
+        auth: {
+            user: mailInfo.mail, 
+            pass: mailInfo.password,
+        },
+    });
+
+    //mail deatils
+    const mailOptions = {
+        from: mailInfo.mail, // sender address
+        to: userMail, // list of receivers
+        subject: "Hello ✔", // Subject line
+        text: msgBody, // plain text body
+    };
+
+    // send mail with defined transport object
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            callback(`Mail can not be send ${error}`)
+        }
+        callback(false)
+    });
 }
 
 //export module
